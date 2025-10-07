@@ -75,7 +75,7 @@ export function ThreadFilters() {
         <DropdownMenuTrigger asChild>
           <Button variant="outline" size="sm" className="gap-2 bg-transparent">
             <Filter className="h-4 w-4" />
-            Assignee
+            Assigned To
             {selectedAssignees.length > 0 && (
               <Badge variant="secondary" className="ml-1 h-5 px-1">
                 {selectedAssignees.length}
@@ -84,7 +84,7 @@ export function ThreadFilters() {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="start" className="w-48">
-          <DropdownMenuLabel>Filter by Assignee</DropdownMenuLabel>
+          <DropdownMenuLabel>Filter by Assigned To</DropdownMenuLabel>
           <DropdownMenuSeparator />
           {["Alex Chen", "Jordan Lee", "Sam Patel"].map((assignee) => (
             <DropdownMenuCheckboxItem

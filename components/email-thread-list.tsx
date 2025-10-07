@@ -47,7 +47,7 @@ function EmailThreadItem({ thread, onClick, isSelected, isModified, onEditTags, 
   return (
     <Card
       className={cn(
-        "cursor-pointer border-l-4 p-4 transition-all hover:bg-sky-500/5",
+        "cursor-pointer p-4 transition-all hover:bg-sky-500/5 !shadow-none",
         isSelected && "bg-sky-500/5 ring-1 ring-sky-500/20",
         isModified && "ring-2 ring-sky-500/50 bg-sky-500/5",
       )}
