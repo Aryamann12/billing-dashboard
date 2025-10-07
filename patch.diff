@@ -1,0 +1,12 @@
+*** Begin Patch
+*** Update File: lib/types.ts
+@@
+ export type EmailTag =
+   | "ACTION REQUIRED"
+   | "RESPONDED WITHIN SLA"
+   | "RESPONDED OUTSIDE SLA"
+   | "AWAITING CUSTOMER"
+   | "ESCALATED"
+   | "RESOLVED"
++  | "PENDING"
+*** End Patch
