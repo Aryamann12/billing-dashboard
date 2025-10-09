@@ -79,3 +79,21 @@ export interface PerformanceMetrics {
   avgResponseTime: number
   resolutionRate: number
 }
+
+// Authentication types
+export interface User {
+  id: string
+  email: string
+  name: string
+  role: string
+}
+
+export interface AuthContextType {
+  user: User | null
+  isLoading: boolean
+  isAuthenticated: boolean
+  login: (email: string, password: string) => Promise<{success: boolean; error?: string}>
+  logout: () => Promise<void>
+  changePassword: (email: string, currentPassword: string, newPassword: string) => Promise<{success: boolean; message: string}>
+  clearError: () => void
+}

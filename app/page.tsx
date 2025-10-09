@@ -1,3 +1,8 @@
+'use client';
+
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/lib/contexts/auth-context";
 import { DashboardNav } from "@/components/dashboard-nav"
 import { DashboardSidebar } from "@/components/dashboard-sidebar"
 import { StatsCards } from "@/components/stats-cards"
@@ -13,7 +18,40 @@ import { TagLearningPanel } from "@/components/tag-learning-panel"
 import { ModifiedEmailsPanel } from "@/components/modified-emails-panel"
 
 export default function DashboardPage() {
+  const { isAuthenticated, isLoading } = useAuth();
+  const router = useRouter();
   const activeView = "Overview" // or "Tag Learning"
+
+  // Additional safety check at the component level
+  useEffect(() => {
+    if (!isLoading && !isAuthenticated) {
+      console.log('Dashboard: User not authenticated, redirecting to login');
+      router.replace('/login');
+    }
+  }, [isAuthenticated, isLoading, router]);
+
+  // Show loading state while checking authentication
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+          <p className="mt-4 text-gray-600 text-lg">Loading dashboard...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Don't render dashboard if not authenticated
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-gray-600 text-lg">Redirecting to login...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen">

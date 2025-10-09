@@ -6,6 +6,8 @@ import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { TagProvider } from "@/lib/contexts/tag-context"
+import { AuthProvider } from "@/lib/contexts/auth-context"
+import AuthWrapper from "@/components/auth-wrapper"
 import { Toaster } from "@/components/ui/toaster"
 import { Suspense } from "react"
 
@@ -25,10 +27,14 @@ export default function RootLayout({
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
         <Suspense fallback={null}>
           <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
-            <TagProvider>
-              {children}
-              <Toaster />
-            </TagProvider>
+            <AuthProvider>
+              <AuthWrapper>
+                <TagProvider>
+                  {children}
+                  <Toaster />
+                </TagProvider>
+              </AuthWrapper>
+            </AuthProvider>
           </ThemeProvider>
           <Analytics />
         </Suspense>

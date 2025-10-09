@@ -8,8 +8,9 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import LogoutButton from "@/components/logout-button"
+import SimpleLogout from "@/components/simple-logout"
 
 export function DashboardNav() {
   const { setTheme, theme } = useTheme()
@@ -100,17 +101,14 @@ export function DashboardNav() {
                 <Settings className="h-5 w-5" />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
+            <DropdownMenuContent align="end" className="z-50">
               <DropdownMenuItem>Preferences</DropdownMenuItem>
               <DropdownMenuItem>Team Settings</DropdownMenuItem>
               <DropdownMenuItem>Integrations</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <Avatar className="h-8 w-8">
-            <AvatarImage src="/placeholder.svg?height=32&width=32" />
-            <AvatarFallback>AD</AvatarFallback>
-          </Avatar>
+          <SimpleLogout />
         </div>
       </div>
     </header>
